@@ -1,0 +1,17 @@
+[
+  {
+    "email": "ghfgf",
+    "password": "A",
+    "expectedmessage": "Email 'ghfgf' isn`t valid"
+  },
+{
+	"email": "ghfg@3Dh",
+	"password": "a",
+  "expectedmessage": "Password must contains at least: 8 characters(at least: 1 upper case, 1 lower case, 1 number and 1 special character('!@#$%^&*')) and no more 30 characters."
+},
+{
+	"email": "exampleemail@gmail.com",
+	"password": "Aa1jhsd",
+  "expectedmessage": "Password must contains at least: 8 characters(at least: 1 upper case, 1 lower case, 1 number and 1 special character('!@#$%^&*')) and no more 30 characters."
+}
+]

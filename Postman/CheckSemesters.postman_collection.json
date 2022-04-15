@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "a0c4dae4-9fab-4cab-94d4-d5c3ec7a6018",
+		"name": "CheckSemesters",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{baseUrl}}/semesters/default",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"\"required\": [\r",
+							"        \"id\",\r",
+							"        \"defaultSemester\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"id\": {\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"defaultSemester\": {\r",
+							"            \"type\": \"boolean\"\r",
+							"        }\r",
+							"    }\r",
+							"}\r",
+							"pm.test(\"Status code is 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"/*pm.test(\"Id name valid\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    //pm.expect(tv4.validate(jsonData, schema)).to.be.true; \r",
+							"    pm.expect(jsonData.id).to.eqls(pm.iterationData.get(\"id\"))\r",
+							"});*/\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/semesters/default",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"semesters",
+						"default"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

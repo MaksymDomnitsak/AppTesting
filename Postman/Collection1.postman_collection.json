@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "30ee3488-c088-4f72-83e1-fabe9a2af3a1",
+		"name": "Collection1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{baseUrl}}/auth/sign-up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*let regexemail = new RegExp('^[a-zA-Z0-9.!#$%&*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$');\r",
+							"let pswrdupper = new RegExp('[A-Z]');\r",
+							"let pswrdlower = new RegExp('[a-z]');\r",
+							"let pswrdnumber = new RegExp('[0-9]');\r",
+							"let pswrdspcsymbs = new RegExp('[!#$%&*+/=?^`~]')*/\r",
+							"pm.test(\"Status code is 400\",function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Valid message about email\", () => {\r",
+							"pm.expect(pm.response.json().message).to.be.equal(\"Email isn`t valid \"+pm.iterationData.get(\"email\"))});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set('bodyemail',JSON.stringify(pm.iterationData.get(\"email\")))\r",
+							"pm.variables.set('bodypassword',JSON.stringify(pm.iterationData.get(\"password\")))\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"ghfgf\",\"password\": \"A\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/sign-up",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{baseUrl}}/auth/sign-up Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\",function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Valid message about password\", () => {\r",
+							"pm.expect(pm.variables.get(\"errormessage\")).to.be.equal(pm.response.json().message)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set('bodyemail',JSON.stringify(pm.iterationData.get(\"email\")))\r",
+							"pm.variables.set('bodypassword',JSON.stringify(pm.iterationData.get(\"password\")))\r",
+							"pm.variables.set('errormessage',pm.iterationData.get(\"expectedmessage\"))\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": {{bodyemail}},\"password\": {{bodypassword}}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/sign-up",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
